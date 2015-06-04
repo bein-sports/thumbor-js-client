@@ -36,9 +36,10 @@ ThumborJsClient = (function() {
 
 		if(this.command.length > 0) {
 			urlPart += this.command.join('/');
+			urlPart += '/';
 		}
 
-		return urlPart + '/' + filename;
+		return urlPart + filename;
 	};
 
 	/**
