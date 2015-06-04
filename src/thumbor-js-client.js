@@ -26,6 +26,18 @@ ThumborJsClient = (function() {
 	};
 
 	/**
+	 * Adds /fit-in/{width}*{height}. (requires width and height)
+	 *
+	 * @param width
+	 * @param height
+	 * @returns {Client}
+	 */
+	Client.prototype.fitIn = function(width, height) {
+		this.command.push('fit-in/' + width + 'x' + height);
+		return this;
+	};
+
+	/**
 	 * Generates the url part composed of filename and commands
 	 *
 	 * @param filename
@@ -50,13 +62,12 @@ ThumborJsClient = (function() {
 	 */
 	Client.prototype.sign = function(urlPart) {
 
-		var hmacText = urlPart;
 		var hmacTextType = "TEXT";
 		var hmacKeyInput = this.secret;
 		var hmacKeyInputType = "TEXT";
 		var hmacVariant = "SHA-1";
 		var hmacOutputType = "B64";
-		var hmacObj = new jsSHA(hmacText, hmacTextType);
+		var hmacObj = new jsSHA(urlPart, hmacTextType);
 
 		//Generates hMac key
 		var hash = hmacObj.getHMAC(
