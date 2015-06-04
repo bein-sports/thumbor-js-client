@@ -1,7 +1,11 @@
 {
   "name": "thumbor-js-client",
-  "version": "0.0.1",
-  "main": "path/to/main.css",
+  "version": "0.0.2",
+  "main": "src/thumbor-js-client.js",
+  "homepage": "https://github.com/bein-sports/thumbor-js-client",
+  "ignore": [
+    "bower_components"
+  ],
   "dependencies": {
     "jsSHA": "1.6.0"
   }
