@@ -4,6 +4,7 @@
  #Install :
 
  - bower install
+ - include bower_components/jsSHA/src/sha.js
  - include src/thumbor-js-client.js
 
 
