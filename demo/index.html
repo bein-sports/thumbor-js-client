@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="../src/thumbor-js-client.js"></script>
+    <script src="../bower_components/jsSHA/src/sha.js"></script>
+</head>
+<body>
+    <form action="index.html" name="demoForm" id="demoForm">
+       Host : <input type="text" name="host" id="host" size="100"> <br />
+       Secret : <input type="text" name="secret" id="secret" size="100"> <br />
+       Filename : <input type="text" name="filename" id="filename" size="100"> <br />
+        Full fit in width : <input type="text" name="fullFitInWidth" id="fullFitInWidth"> <br />
+        Full fit in height : <input type="text" name="fullFitInHeight" id="fullFitInHeight"> <br />
+        <input type="button" value="go" onClick="goThumbor()">
+        <div id="result">
+            <div id="resultHmac"></div>
+            <div id="resultUrl"></div>
+            <div><img id="resultImg" src="" /></div>
+        </div>
+    </form>
+</body>
+</html>
+
+<script type="text/javascript">
+    var goThumbor = function() {
+        var hostname = document.getElementById('host').value;
+        var secret = document.getElementById('secret').value;
+        var filename = document.getElementById('filename').value;
+        var fullFitInWidth = document.getElementById('fullFitInWidth').value;
+        var fullFitInHeight = document.getElementById('fullFitInHeight').value;
+
+
+        var thumborClient = ThumborJsClient.create(hostname, secret);
+        thumborClient.fullFitIn(fullFitInWidth, fullFitInHeight);
+
+        var urlPart = thumborClient.urlPart(filename);
+        var hash = thumborClient.sign(urlPart);
+        var url = thumborClient.url(filename);
+
+        document.getElementById('resultHmac').value = hash;
+        document.getElementById('resultUrl').value = url;
+        document.getElementById('resultImg').src  = url;
+    };
+</script>

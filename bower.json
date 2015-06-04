@@ -1,0 +1,8 @@
+{
+  "name": "thumbor-js-client",
+  "version": "0.0.1",
+  "main": "path/to/main.css",
+  "dependencies": {
+    "jsSHA": "1.6.0"
+  }
+}
