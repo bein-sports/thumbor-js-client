@@ -67,7 +67,7 @@ ThumborJsClient = (function() {
 		);
 
 		// Replaces / by _ and + by - , to avoid url issues
-		return hash.replace("/", "_").replace("+", "-");
+		return hash.replace(/\//g, "_").replace(/\+/g, "-");
 
 	};
 
